@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="Kuriboh_Marcador" size="0.600000 0.856421" />
+    <ImageTarget name="jinzo_card" size="0.060000 0.088050" />
+    <ImageTarget name="kuriboh_Card" size="0.060000 0.088500" />
+  </Tracking>
+</QCARConfig>
