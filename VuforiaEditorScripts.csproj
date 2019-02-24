@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{CA9C74A7-804C-F48E-2A8F-CC910BD12B06}</ProjectGuid>
+    <ProjectGuid>{D1440961-8DB9-1B3F-4049-1C2101D12A83}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>VuforiaEditorScripts</AssemblyName>
@@ -305,19 +305,19 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
-      <HintPath>C:/Users/vixad/Searches/Escritorio/TFG/Vuforia/VuforiaPrueba3D/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
+      <HintPath>C:/Users/vixad/Searches/Escritorio/TFG/Vuforia/Vuforia-YuGiOh-Experiment/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/Users/vixad/Searches/Escritorio/TFG/Vuforia/VuforiaPrueba3D/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/Users/vixad/Searches/Escritorio/TFG/Vuforia/Vuforia-YuGiOh-Experiment/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/Users/vixad/Searches/Escritorio/TFG/Vuforia/VuforiaPrueba3D/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/vixad/Searches/Escritorio/TFG/Vuforia/Vuforia-YuGiOh-Experiment/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/Users/vixad/Searches/Escritorio/TFG/Vuforia/VuforiaPrueba3D/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/Users/vixad/Searches/Escritorio/TFG/Vuforia/Vuforia-YuGiOh-Experiment/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
-      <HintPath>C:/Users/vixad/Searches/Escritorio/TFG/Vuforia/VuforiaPrueba3D/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
+      <HintPath>C:/Users/vixad/Searches/Escritorio/TFG/Vuforia/Vuforia-YuGiOh-Experiment/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -676,7 +676,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="VuforiaScripts.csproj">
-      <Project>{65CE550F-F4CF-13F4-0CE8-130065492AD7}</Project>
+      <Project>{CD74B9C5-9398-6402-0DF2-8941251DD46B}</Project>
       <Name>VuforiaScripts</Name>
     </ProjectReference>
   </ItemGroup>
