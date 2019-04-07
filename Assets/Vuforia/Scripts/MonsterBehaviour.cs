@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class MonsterBehaviour : MonoBehaviour
 {
     //You can/can't click it
@@ -11,6 +10,8 @@ public class MonsterBehaviour : MonoBehaviour
     bool _selected;
     //The current state of the monster
     MonsterState _state;
+    //Owner
+    Player _owner;
 
 
     // Start is called before the first frame update
@@ -21,6 +22,14 @@ public class MonsterBehaviour : MonoBehaviour
         _state = MonsterState.Idle;
     }
 
+    public void setOwner(Player p) {
+        _owner = p;
+    }
+
+    public float getOrientation() {
+        Vector3 f = transform.forward;
+        return f.z;
+    }
     // Update is called once per frame
     /*void Update()
     {

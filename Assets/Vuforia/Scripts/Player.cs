@@ -19,7 +19,8 @@ public class Player
         _id = pID;
     }
 
-    void addMonsterToThisPlayer(MonsterBehaviour monster) {
+    public void addMonsterToThisPlayer(MonsterBehaviour monster) {
         _monsters.Add(monster);
+        monster.setOwner(this);
     }
 }

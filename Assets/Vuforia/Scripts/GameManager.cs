@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum PlayerId { One, Two };
 public enum MonsterState { Idle, Moving, Def, Attack, Damaged };
@@ -8,17 +9,37 @@ public enum GameState { MonsterSelection, OptionSelection, Player2Turn };
 
 public class GameManager : MonoBehaviour
 {
+    //Text to be shown in every turn
+    public RawImage monsterSelect, yourTurn, enemyTurn;
+    //Ticks to be shown when a monster is detected
+    public RawImage redTick, greenTick;
+    //The behaviour that shows texts
+    TitleShow ts;
+
+    //Trackable cards
+    [SerializeField]
+    private TrackableCard kuriboh;
+    private TrackableCard jinzo;
+
+
     //Players in the game
     Player _playerOne;
     Player _playerTwo;
     PlayerId _currentTurn;
 
     //List of states
-    List<State> states;
+    List<State> _states;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Inits _states
+        _states = new List<State>();
+
+
+        //Inits the ts
+        ts = this.gameObject.GetComponent<TitleShow>();
+
         //Creates both players
         _playerOne = new Player();
         _playerOne.initPlayer(PlayerId.One);
@@ -26,8 +47,15 @@ public class GameManager : MonoBehaviour
         _playerTwo.initPlayer(PlayerId.Two);
         _currentTurn = PlayerId.One;
 
+        //Inits cards
+        kuriboh.initPlayers(_playerOne, _playerTwo);
+        jinzo.initPlayers(_playerOne, _playerTwo);
 
 
+        //Game starts in monster set phase
+        //(the moment when the game assigns each player monsters
+        // based on their orientation)
+        _states.Add(new MonsterSetState(_playerOne, _playerTwo, _currentTurn));
     }
 
     //This is the main loop of the game
@@ -61,9 +89,13 @@ abstract class State {
 /// </summary>
 class MonsterSetState : State {
 
-    MonsterSetState(Player one, Player two, PlayerId actualOne) : base(one,two, actualOne) {
+    public MonsterSetState(Player one, Player two, PlayerId actualOne) : base(one,two, actualOne) {
     }
     public override void stateTick() {
+        //If a monster is detected, checks its position and assigns it
+        // to the player it belongs
+
+
         return;
     }
 }
@@ -77,7 +109,7 @@ class MonsterSetState : State {
 class MonsterSelectState : State
 {
 
-    MonsterSelectState(Player one, Player two, PlayerId actualOne) : base(one, two, actualOne)
+    public MonsterSelectState(Player one, Player two, PlayerId actualOne) : base(one, two, actualOne)
     {
     }
     public override void stateTick()
@@ -95,7 +127,7 @@ class MonsterSelectState : State
 class MonsterActionState : State
 {
 
-    MonsterActionState(Player one, Player two, PlayerId actualOne) : base(one, two, actualOne)
+    public MonsterActionState(Player one, Player two, PlayerId actualOne) : base(one, two, actualOne)
     {
     }
     public override void stateTick()
@@ -110,7 +142,7 @@ class MonsterActionState : State
 class Player2DummyState : State
 {
 
-    Player2DummyState(Player one, Player two, PlayerId actualOne) : base(one, two, actualOne)
+    public Player2DummyState(Player one, Player two, PlayerId actualOne) : base(one, two, actualOne)
     {
     }
     public override void stateTick()
