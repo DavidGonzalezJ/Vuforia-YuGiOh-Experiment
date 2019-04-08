@@ -5,10 +5,14 @@ using UnityEngine.UI;
 
 public enum PlayerId { One, Two };
 public enum MonsterState { Idle, Moving, Def, Attack, Damaged };
-public enum GameState { MonsterSelection, OptionSelection, Player2Turn };
+public enum GameState { MonsterSet, MonsterSelection, OptionSelection, Player2Turn };
 
 public class GameManager : MonoBehaviour
 {
+    //Current game state
+    GameState _currentGameState;
+
+    
     //Text to be shown in every turn
     public RawImage monsterSelect, yourTurn, enemyTurn;
     //Ticks to be shown when a monster is detected
@@ -19,6 +23,7 @@ public class GameManager : MonoBehaviour
     //Trackable cards
     [SerializeField]
     private TrackableCard kuriboh;
+    [SerializeField]
     private TrackableCard jinzo;
 
 
@@ -56,6 +61,9 @@ public class GameManager : MonoBehaviour
         //(the moment when the game assigns each player monsters
         // based on their orientation)
         _states.Add(new MonsterSetState(_playerOne, _playerTwo, _currentTurn));
+
+        //Starts the monster search
+        startSetPhase();
     }
 
     //This is the main loop of the game
@@ -63,6 +71,61 @@ public class GameManager : MonoBehaviour
     void RunGame() {
 
     }
+
+    //Monster Recognition state
+    [SerializeField]
+    private Button endSetPhase;
+    //This method will be called at the beggining of each game
+    //And just once per game
+    public void startSetPhase() {
+        _currentGameState = GameState.MonsterSet;
+        endSetPhase.gameObject.SetActive(true);
+        ts.showTitle(monsterSelect);
+    }
+
+
+    //Monster choosing state
+    [SerializeField]
+    private RawImage _tapText;
+    //Monster Selection only has the "tap one of your monsters" message
+    //This method is called from Cancel button in action selection & End button in monster set phase
+    public void ToMonsterSelection() {
+        if (_currentGameState == GameState.MonsterSet)
+        {
+            endSetPhase.gameObject.SetActive(false);
+            ts.showTitle(yourTurn);
+            _currentTurn = PlayerId.One;
+        }
+        else
+        {
+            Attack.gameObject.SetActive(false);
+            Defend.gameObject.SetActive(false);
+            Cancel.gameObject.SetActive(false);
+        }
+        _currentGameState = GameState.MonsterSelection;
+        _tapText.gameObject.SetActive(true);
+        //Make monsters selectable
+
+
+    }
+
+    //Option selection (when a monster is chosen) state
+    [SerializeField]
+    private Button Attack, Defend, Cancel;
+    //Option selection displays three buttons
+    //This method will be called when a monster is tapped
+    public void ToOptionSelection(){
+        _tapText.gameObject.SetActive(true);
+        Attack.gameObject.SetActive(true);
+        Defend.gameObject.SetActive(true);
+        Cancel.gameObject.SetActive(true);
+        _currentGameState = GameState.OptionSelection;
+        //Make monsters unselectable
+
+
+    }
+
+    //
 }
 
 //Abstract class for each one of the states
@@ -112,6 +175,7 @@ class MonsterSelectState : State
     public MonsterSelectState(Player one, Player two, PlayerId actualOne) : base(one, two, actualOne)
     {
     }
+
     public override void stateTick()
     {
         return;

@@ -17,6 +17,7 @@ public class Player
     public void initPlayer(PlayerId pID)
     {
         _id = pID;
+        _monsters = new List<MonsterBehaviour>();
     }
 
     public void addMonsterToThisPlayer(MonsterBehaviour monster) {

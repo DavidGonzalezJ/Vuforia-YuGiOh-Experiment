@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TrackableCard : MonoBehaviour, ITrackableEventHandler
 {
     private TrackableBehaviour TB;
+    private bool _alreadyAssigned;
 
     [SerializeField]
     private MonsterBehaviour myMonster = null;
@@ -14,7 +15,7 @@ public class TrackableCard : MonoBehaviour, ITrackableEventHandler
     private TitleShow Ts = null;
 
     [SerializeField]
-    private RawImage gTick,rTick = null;
+    private RawImage gTick , rTick = null;
 
 
     private Player playerOne, playerTwo;
@@ -22,6 +23,7 @@ public class TrackableCard : MonoBehaviour, ITrackableEventHandler
     // Start is called before the first frame update
     void Start()
     {
+        _alreadyAssigned = false;
         TB = GetComponent<TrackableBehaviour>();
         if (TB)
         {
@@ -35,8 +37,14 @@ public class TrackableCard : MonoBehaviour, ITrackableEventHandler
 
     public void OnTrackableStateChanged(TrackableBehaviour.Status previousStatus,TrackableBehaviour.Status newStatus)
     {
-        if (newStatus == TrackableBehaviour.Status.DETECTED) {
-            OnDetection();
+        if (!_alreadyAssigned)
+        {
+            if (newStatus == TrackableBehaviour.Status.TRACKED)
+            {
+                _alreadyAssigned = true;
+                OnDetection();
+                //Must disable this comp when it's job is done
+            }
         }
     }
 
