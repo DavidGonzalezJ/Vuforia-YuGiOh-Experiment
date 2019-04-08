@@ -9,6 +9,9 @@ public enum GameState { MonsterSet, MonsterSelection, OptionSelection, Player2Tu
 
 public class GameManager : MonoBehaviour
 {
+    //Singleton
+    public static GameManager instance = null;
+
     //Current game state
     GameState _currentGameState;
 
@@ -31,12 +34,31 @@ public class GameManager : MonoBehaviour
     Player _playerOne;
     Player _playerTwo;
     PlayerId _currentTurn;
+    public PlayerId getCurrentPlayer() {
+        return _currentTurn;
+    }
 
     //List of states
     List<State> _states;
 
-    // Start is called before the first frame update
-    void Start()
+    //Awake to create the singleton
+    void Awake()
+    {
+        //Check if instance already exists
+        if (instance == null)
+
+            //if not, set instance to this
+            instance = this;
+
+        //If instance already exists and it's not this:
+        else if (instance != this)
+
+            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
+            Destroy(gameObject);
+    }
+
+        // Start is called before the first frame update
+        void Start()
     {
         //Inits _states
         _states = new List<State>();
@@ -98,34 +120,71 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            _actionText.gameObject.SetActive(false);
             Attack.gameObject.SetActive(false);
             Defend.gameObject.SetActive(false);
             Cancel.gameObject.SetActive(false);
         }
         _currentGameState = GameState.MonsterSelection;
         _tapText.gameObject.SetActive(true);
+
         //Make monsters selectable
-
-
+        clickEnabled();
     }
 
     //Option selection (when a monster is chosen) state
+    [SerializeField]
+    private RawImage _actionText;
     [SerializeField]
     private Button Attack, Defend, Cancel;
     //Option selection displays three buttons
     //This method will be called when a monster is tapped
     public void ToOptionSelection(){
-        _tapText.gameObject.SetActive(true);
+        endSetPhase.gameObject.SetActive(false);
+        _tapText.gameObject.SetActive(false);
+        _actionText.gameObject.SetActive(true);
         Attack.gameObject.SetActive(true);
         Defend.gameObject.SetActive(true);
         Cancel.gameObject.SetActive(true);
         _currentGameState = GameState.OptionSelection;
+
         //Make monsters unselectable
-
-
+        clickDisabled();
     }
 
-    //
+    ////Monster actions
+    public void MonsterAttack()
+    {
+        //Should create another state
+    }
+
+    public void MonsterDefend()
+    {
+        //Make the animation and stay defending
+    }
+
+    public void CancelSelection()
+    {
+        ToMonsterSelection();
+    }
+
+
+    //Enemy turn
+    //  . . .
+
+
+    //Click on monsters enabled
+    public void clickEnabled() {
+        _playerOne.enableMonsterClick();
+        _playerTwo.enableMonsterClick();
+    }
+
+    //Disabled
+    public void clickDisabled()
+    {
+        _playerOne.disableMonsterClick();
+        _playerTwo.disableMonsterClick();
+    }
 }
 
 //Abstract class for each one of the states

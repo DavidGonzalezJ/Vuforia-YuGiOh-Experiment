@@ -9,7 +9,7 @@ public class Player
     //List of monsters this player posesses
     List<MonsterBehaviour> _monsters;
     //This is player one or two
-    PlayerId _id;
+    public PlayerId _id;
 
 
 
@@ -23,5 +23,21 @@ public class Player
     public void addMonsterToThisPlayer(MonsterBehaviour monster) {
         _monsters.Add(monster);
         monster.setOwner(this);
+    }
+
+    //Enables to click it's monsters
+    public void enableMonsterClick() {
+        foreach (MonsterBehaviour m in _monsters) {
+            m.enableSelection();
+        }
+    }
+
+    //Disables to click it's monsters
+    public void disableMonsterClick()
+    {
+        foreach (MonsterBehaviour m in _monsters)
+        {
+            m.disableSelection();
+        }
     }
 }
