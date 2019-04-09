@@ -700,6 +700,7 @@ MonoBehaviour:
   Attack: {fileID: 2022687887}
   Defend: {fileID: 1042111878}
   Cancel: {fileID: 1615728746}
+  _targetText: {fileID: 341174526}
 --- !u!4 &377289549
 Transform:
   m_ObjectHideFlags: 0
@@ -2582,7 +2583,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 377289548}
-        m_MethodName: MonsterAttack
+        m_MethodName: ToTargetSelection
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

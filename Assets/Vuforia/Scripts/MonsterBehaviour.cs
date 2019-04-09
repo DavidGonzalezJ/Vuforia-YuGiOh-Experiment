@@ -53,18 +53,38 @@ public class MonsterBehaviour : MonoBehaviour
     //If his collider is active
     private void OnMouseDown()
     {
-        //If monster is mine (belongs to the person whom turn is playing now)
-        if (GameManager.instance.getCurrentPlayer() == _owner._id)
+        if (GameManager.instance.GetGameState() == GameState.MonsterSelection)
         {
-            GameManager.instance.clickDisabled();
-            GameManager.instance.ToOptionSelection();
-        }
-        else {
+            //If monster is mine (belongs to the person whom turn is playing now)
+            if (GameManager.instance.getCurrentPlayer() == _owner._id)
+            {
+                GameManager.instance.clickDisabled();
+                GameManager.instance.ToOptionSelection();
+            }
+            else
+            {
 
-            //SHOW MESSAGE
-            Debug.Log("NOT YOUR MONSTER");
+                //SHOW MESSAGE
+                Debug.Log("NOT YOUR MONSTER");
+            }
         }
-        
+
+        else if (GameManager.instance.GetGameState() == GameState.TargetSelection)
+        {
+            //If monster is not mine (can be selected as a target)
+            if (GameManager.instance.getCurrentPlayer() != _owner._id)
+            {
+                GameManager.instance.clickDisabled();
+                // ATTACK
+                Debug.Log("ATTACKKK");
+            }
+            else
+            {
+
+                //SHOW MESSAGE
+                Debug.Log("CAN'T SELECT YOUR MONSTER AS A TARGET");
+            }
+        }
     }
     // Update is called once per frame
     /*void Update()

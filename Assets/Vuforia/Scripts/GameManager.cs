@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public enum PlayerId { One, Two };
 public enum MonsterState { Idle, Moving, Def, Attack, Damaged };
-public enum GameState { MonsterSet, MonsterSelection, OptionSelection, Player2Turn };
+public enum GameState { MonsterSet, MonsterSelection, OptionSelection, TargetSelection, Player2Turn };
 
 public class GameManager : MonoBehaviour
 {
@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     //Current game state
-    GameState _currentGameState;
+    private GameState _currentGameState;
+    public GameState GetGameState() { return _currentGameState; }
 
     
     //Text to be shown in every turn
@@ -150,6 +151,22 @@ public class GameManager : MonoBehaviour
 
         //Make monsters unselectable
         clickDisabled();
+    }
+
+    //Target selection (when a monster is chosen to attack)
+    [SerializeField]
+    private RawImage _targetText;
+    public void ToTargetSelection()
+    {
+        _actionText.gameObject.SetActive(false);
+        _targetText.gameObject.SetActive(true);
+        Attack.gameObject.SetActive(false);
+        Defend.gameObject.SetActive(false);
+        Cancel.gameObject.SetActive(false);
+        _currentGameState = GameState.TargetSelection;
+
+        //Make monsters selectable
+        clickEnabled();
     }
 
     ////Monster actions
