@@ -64,11 +64,6 @@
     <Compile Include="Assets\Vuforia\Scripts\DefaultInitializationErrorHandler.cs" />
     <Compile Include="Assets\Vuforia\Scripts\DefaultModelRecoEventHandler.cs" />
     <Compile Include="Assets\Vuforia\Scripts\DefaultTrackableEventHandler.cs" />
-    <Compile Include="Assets\Vuforia\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Vuforia\Scripts\MonsterBehaviour.cs" />
-    <Compile Include="Assets\Vuforia\Scripts\Player.cs" />
-    <Compile Include="Assets\Vuforia\Scripts\TitleShow.cs" />
-    <Compile Include="Assets\Vuforia\Scripts\TrackableCard.cs" />
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
     </Reference>
