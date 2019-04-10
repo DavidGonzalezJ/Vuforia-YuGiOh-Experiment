@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
     //Monster Selection only has the "tap one of your monsters" message
     //This method is called from Cancel button in action selection & End button in monster set phase
     public void ToMonsterSelection() {
-        if (_currentGameState == GameState.MonsterSet)
+        if (_currentGameState == GameState.MonsterSet || _currentGameState == GameState.Player2Turn)
         {
             endSetPhase.gameObject.SetActive(false);
             ts.showTitle(yourTurn,activateTapText);
@@ -178,6 +178,32 @@ public class GameManager : MonoBehaviour
 
         //Make monsters selectable
         clickEnabled();
+    }
+
+    //Enemy turn (for now, just swaps its defense position)
+    public void ToEnemyTurn()
+    {
+        _actionText.gameObject.SetActive(false);
+        _targetText.gameObject.SetActive(false);
+        Attack.gameObject.SetActive(false);
+        Defend.gameObject.SetActive(false);
+        Cancel.gameObject.SetActive(false);
+        _currentGameState = GameState.Player2Turn;
+        _currentTurn = PlayerId.Two;
+        ts.showTitle(enemyTurn);
+        clickDisabled();
+        StartCoroutine(EnemyTurnCoroutine());
+
+    }
+    IEnumerator EnemyTurnCoroutine() {
+        yield return new WaitForSeconds(4.0f);
+        MonsterBehaviour mons = _playerTwo.getAMoster();
+        if (mons.GetState() == MonsterState.Def)
+            mons.StopDefend();
+        else
+            mons.Defend();
+        yield return new WaitForSeconds(3.0f);
+        ToMonsterSelection();
     }
 
     ////Monster actions

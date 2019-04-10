@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="krillin_scene" size="0.110000 0.049039" />
+    <ImageTarget name="goku-scene" size="0.050000 0.254335" />
+    <ImageTarget name="explosion-scene" size="0.120000 0.111429" />
+    <ImageTarget name="freezer_scene" size="0.110000 0.057838" />
+  </Tracking>
+</QCARConfig>

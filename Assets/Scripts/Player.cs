@@ -11,7 +11,9 @@ public class Player
     //This is player one or two
     public PlayerId _id;
 
-
+    public MonsterBehaviour getAMoster() {
+        return _monsters[0];
+    }
 
     //This is called from the manager to init each player
     public void initPlayer(PlayerId pID)
