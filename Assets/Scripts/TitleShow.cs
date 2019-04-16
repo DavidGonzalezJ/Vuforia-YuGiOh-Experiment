@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Just an object to show some placards with info for a few seconds
+/// </summary>
 public class TitleShow : MonoBehaviour
 {
     Camera cam;
@@ -15,7 +18,6 @@ public class TitleShow : MonoBehaviour
 
     IEnumerator showTitleCoroutine(RawImage im, System.Action callback= null)
     {
-
         im.gameObject.SetActive(true);
         yield return new WaitForSeconds(1.5f);
         im.gameObject.SetActive(false);
@@ -30,16 +32,4 @@ public class TitleShow : MonoBehaviour
         int ph = cam.pixelHeight;
         int pw = cam.pixelWidth;
     }
-
-    // Start is called before the first rame update
-    /*void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }*/
 }

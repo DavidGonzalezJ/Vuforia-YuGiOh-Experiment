@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
+/// <summary>
+/// Class that contains the info of each player: monsters and id
+/// And functions to interact with it's monsters
+/// </summary>
 public class Player
 {
     //List of monsters this player posesses
@@ -29,7 +32,8 @@ public class Player
 
     //Enables to click it's monsters
     public void enableMonsterClick() {
-        foreach (MonsterBehaviour m in _monsters) {
+        foreach (MonsterBehaviour m in _monsters)
+        {
             m.enableSelection();
         }
     }
